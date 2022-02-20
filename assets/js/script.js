@@ -42,3 +42,41 @@ const checkOrder = () => {
     nextLevel()
   };
 };
+
+const click = (color) => {
+  clickOrder(clickOrder.length) = color;
+  createColorElement(color).classList.add('selected');
+
+  setTimeout(() => {
+    createColorElement(color).classList.remove('selected')
+  })
+
+  checkOrder();
+};
+
+const createColorElement = (color) => {
+  if (color === 0) return green;
+  if (color === 1) return red;
+  if (color === 2) return yellow;
+  if (color === 3) return blue;
+};
+
+const nextLevel = () => {
+  score += 1;
+  shuffleOrder()  
+};
+
+const gameOver = () => {
+  alert(`Pontuação: ${score}!\n Você perdeu o jogo!\n Click em "OK" para iniciar um novo jogo`);
+  order = [];
+  clickOrder = []
+
+  playGame()
+};
+
+const playGame = () => {
+  alert('Bem vindo ao Genesis Game! Iniciando novo jogo!')
+  score = 0;
+
+  nextLevel();
+}
