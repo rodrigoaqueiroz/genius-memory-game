@@ -1,5 +1,5 @@
 let order = [];
-let clickOrder = [];
+let clickedOrder = [];
 let score = 0;
 
 // Ordem: 0 - verde; 1 - vermelho; 2 - amarelo; 3 - azul
@@ -32,26 +32,25 @@ const shuffleOrder = () => {
 
 const checkOrder = () => {
   for (let i in clickedOrder) {
-     if (clickedOrder[i] !== order[i]) {
-       lose() 
+     if (clickedOrder[i] != order[i]) {
+       gameOver() 
        break;
      }
   }
-  if (clickOrder.length === order.length) {
+  if (clickedOrder.length == order.length) {
     alert(`Pontuação: ${score}\nVocê acertou! Iniciando próximo nível!`)
     nextLevel()
   };
 };
 
 const click = (color) => {
-  clickOrder(clickOrder.length) = color;
+  clickedOrder[clickedOrder.length] = color;
   createColorElement(color).classList.add('selected');
 
   setTimeout(() => {
     createColorElement(color).classList.remove('selected')
-  })
-
-  checkOrder();
+    checkOrder();
+  }, 250)
 };
 
 const createColorElement = (color) => {
@@ -69,14 +68,19 @@ const nextLevel = () => {
 const gameOver = () => {
   alert(`Pontuação: ${score}!\n Você perdeu o jogo!\n Click em "OK" para iniciar um novo jogo`);
   order = [];
-  clickOrder = []
-
+  clickedOrder = []
   playGame()
 };
 
 const playGame = () => {
-  alert('Bem vindo ao Genesis Game! Iniciando novo jogo!')
+  alert('Bem vindo ao Genesis Game! Iniciando um novo jogo!')
   score = 0;
-
   nextLevel();
 }
+
+green.onclick = () => click(0);
+red.onclick = () => click(1);
+yellow.onclick = () => click(2);
+blue.onclick = () => click(3);
+
+playGame();
