@@ -73,7 +73,7 @@ const gameOver = () => {
 }
 
 const playGame = () => {
-  alert('Bem vindo ao Genesis Game! Iniciando um novo jogo!');
+  alert('Bem vindo ao Genius Game! Iniciando um novo jogo!');
   score = 0;
   nextLevel();
 };
