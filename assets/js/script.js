@@ -4,10 +4,10 @@ let score = 0;
 
 // Ordem: 0 - verde; 1 - vermelho; 2 - amarelo; 3 - azul
 
-const blue = document.querySelector('.color-blue')
-const yellow = document.querySelector('.color-yellow')
-const green = document.querySelector('.color-green')
-const red = document.querySelector('.color-red')
+const blue = document.querySelector('.color-blue');
+const yellow = document.querySelector('.color-yellow');
+const green = document.querySelector('.color-green');
+const red = document.querySelector('.color-red');
 
 const lightColor = (element, number) => {
   number *= 500;
@@ -15,31 +15,31 @@ const lightColor = (element, number) => {
     element.classList.add('selected')
   }, number - 250);
   setTimeout(() => {
-    element.classList.remove('selected')
+    element.classList.remove('selected');
   });
 };
 
 const shuffleOrder = () => {
-  let colorOrder = Math.floor(Math.random() * 4);
+  const colorOrder = Math.floor(Math.random() * 4)
   order[order.length] = colorOrder;
   clickedOrder = [];
-  
-  for (let i in order) {
-    let elementColor = createColorElement(order[i]);
+
+  for (const i in order) {
+    const elementColor = createColorElement(order[i]);
     lightColor(elementColor, Number(i) + 1);
-  }; 
+  };
 };
 
 const checkOrder = () => {
-  for (let i in clickedOrder) {
-     if (clickedOrder[i] != order[i]) {
-       gameOver() 
-       break;
-     }
-  }
-  if (clickedOrder.length == order.length) {
-    alert(`Pontuação: ${score}\nVocê acertou! Iniciando próximo nível!`)
-    nextLevel()
+  for (const i in clickedOrder) {
+    if (clickedOrder[i] !== order[i]) {
+      gameOver();
+      break;
+    };
+  };
+  if (clickedOrder.length === order.length) {
+    alert(`Pontuação: ${score}\nVocê acertou! Iniciando próximo nível!`);
+    nextLevel();
   };
 };
 
@@ -48,9 +48,9 @@ const click = (color) => {
   createColorElement(color).classList.add('selected');
 
   setTimeout(() => {
-    createColorElement(color).classList.remove('selected')
+    createColorElement(color).classList.remove('selected');
     checkOrder();
-  }, 250)
+  }, 250);
 };
 
 const createColorElement = (color) => {
@@ -62,21 +62,21 @@ const createColorElement = (color) => {
 
 const nextLevel = () => {
   score += 1;
-  shuffleOrder()  
+  shuffleOrder();
 };
 
 const gameOver = () => {
   alert(`Pontuação: ${score}!\n Você perdeu o jogo!\n Click em "OK" para iniciar um novo jogo`);
   order = [];
-  clickedOrder = []
-  playGame()
-};
+  clickedOrder = [];
+  playGame();
+}
 
 const playGame = () => {
-  alert('Bem vindo ao Genesis Game! Iniciando um novo jogo!')
+  alert('Bem vindo ao Genesis Game! Iniciando um novo jogo!');
   score = 0;
   nextLevel();
-}
+};
 
 green.onclick = () => click(0);
 red.onclick = () => click(1);

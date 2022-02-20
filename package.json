@@ -1,0 +1,9 @@
+{
+  "name": "memory-genius",
+  "devDependencies": {
+    "standard": "*"
+  },
+  "scripts": {
+    "test": "standard && node my-tests.js"
+  }
+}
