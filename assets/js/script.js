@@ -30,3 +30,15 @@ const shuffleOrder = () => {
   }; 
 };
 
+const checkOrder = () => {
+  for (let i in clickedOrder) {
+     if (clickedOrder[i] !== order[i]) {
+       lose() 
+       break;
+     }
+  }
+  if (clickOrder.length === order.length) {
+    alert(`Pontuação: ${score}\nVocê acertou! Iniciando próximo nível!`)
+    nextLevel()
+  };
+};
